@@ -1,0 +1,46 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: tutorat
+  main:
+    banner-mode: off
+  datasource:
+    url: jdbc:mysql://localhost:3306/tutorat?useSSL=false&serverTimezone=UTC
+    username: rech_user
+    password: MyRech@21
+    # thes 2 lines are used for productin
+    tomcat:
+      test-while-idle: true
+      validation-query: SELECT 1
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: 'create-drop'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,metrics
+    shutdown:
+      enabled: true
+
+info:
+  app:
+    name: tutorat
+    description: Service tutort
+    version: 1.0-Beta
+    author: UCAD, DISI
+
+## Hibernate Logging
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+
